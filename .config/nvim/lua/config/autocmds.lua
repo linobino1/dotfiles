@@ -25,3 +25,14 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     vim.cmd("edit!")
   end,
 })
+
+-- show  diagnostics in a floating window on hover
+vim.api.nvim_create_autocmd("CursorHold", {
+  callback = function()
+    vim.diagnostic.open_float(nil, {
+      focus = false,
+      border = "rounded",
+      source = "always",
+    })
+  end,
+})

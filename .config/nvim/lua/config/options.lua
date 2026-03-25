@@ -5,6 +5,5 @@ vim.opt.wrap = true
 
 -- show LSP errors, warnings, etc. in their own line
 vim.diagnostic.config({
-  virtual_lines = true,
   virtual_text = false,
 })
