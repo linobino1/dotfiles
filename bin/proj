@@ -1,0 +1,18 @@
+name=$(basename "$1")
+cd "$1" || exit 1
+
+# Attach if session already exists
+tmux has-session -t "$name" 2>/dev/null && tmux attach -t "$name" && exit
+
+# Create new session with a window named "editor"
+tmux new-session -d -s "$name" -n editor
+
+# Start nvim in the editor window
+tmux send-keys -t "$name:editor" "nvim ." Enter
+
+# Create additional shell window
+tmux new-window -t "$name" -n shell
+
+# Focus on the editor window and attach to the session
+tmux select-window -t "$name:editor"
+tmux attach -t "$name"
