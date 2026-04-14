@@ -6,6 +6,7 @@ return {
       jsonc = { "prettierd" },
       css = { "prettierd" },
       scss = { "prettierd" },
+      yaml = { "prettierd" },
     })
     return opts
   end,
