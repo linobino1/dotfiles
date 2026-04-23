@@ -2,3 +2,6 @@
 size = 11.5
 offset = { x = 0, y = 2 }
 normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+
+[window]
+option_as_alt="OnlyLeft"
