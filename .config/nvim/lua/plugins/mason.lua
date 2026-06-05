@@ -4,7 +4,6 @@ return {
     opts = {
       ensure_installed = {
         "biome",
-        "copilot-language-server",
         "deno",
         "gopls",
         "json-lsp",
