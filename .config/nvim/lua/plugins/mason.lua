@@ -15,6 +15,7 @@ return {
         "tree-sitter-cli",
         "typescript-language-server",
         "vtsls",
+        "xmlformatter",
         "yaml-language-server",
       },
     },
