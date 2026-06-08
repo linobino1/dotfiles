@@ -4,6 +4,14 @@ return {
     servers = {
       denols = {
         enabled = true,
+        filetypes = {
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact",
+          "json",
+          "jsonc",
+        },
       },
     },
   },
