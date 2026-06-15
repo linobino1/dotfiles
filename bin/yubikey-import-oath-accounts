@@ -1,0 +1,25 @@
+#!/bin/bash
+if [ -z "$1" ]; then
+  echo "Usage: $0 <file with otpauth URIs>"
+  exit 1
+fi
+
+while IFS= read -r uri <&3 || [ -n "$uri" ]; do
+  [ -z "$uri" ] && continue
+
+  # Fallback label extracted from the URI itself
+  label=$(echo "$uri" | sed -E 's#otpauth://[^/]+/([^?]+).*#\1#' | sed 's/%20/ /g; s/%40/@/g')
+
+  output=$(ykman oath accounts uri "$uri" </dev/null 2>&1)
+  status=$?
+
+  if echo "$output" | grep -q "already exists"; then
+    name=$(echo "$output" | sed -n 's/.*An account called \(.*\) already exists.*/\1/p')
+    echo "Skipped (already exists): ${name:-$label}"
+  elif [ $status -ne 0 ]; then
+    echo "Error adding $label:"
+    echo "$output"
+  else
+    echo "Added: $label"
+  fi
+done 3<"$1"
