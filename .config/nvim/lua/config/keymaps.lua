@@ -3,8 +3,8 @@
 -- Add any additional keymaps here
 vim.keymap.set("i", "jj", "<Esc>")
 
--- Exit terminal mode with Esc
-vim.keymap.set("t", "<Leader><Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
+-- Exit terminal mode with double Esc
+vim.keymap.set("t", "<Esc><Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
 
 vim.keymap.set("n", "<leader>rr", function()
   require("lazy").reload()
