@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# this script connects to the GG VPN using an OpenVPN config file,
+# a password stored in the Keychain, and an interactively entered OTP
+
+VPN_CONFIG="$HOME/.gg.ovpn"
+SERVICE="openvpn-gg"
+USERNAME="Hilsheimer"
+PASSWORD=$(security find-generic-password -a "$USERNAME" -s "$SERVICE" -w)
+if [ -z "$PASSWORD" ]; then
+  echo "Couldn't retrieve password from Keychain. Add it using this command: security add-generic-password -a $USERNAME -s $SERVICE -w yourpassword"
+  exit 1
+fi
+
+read -s -p "OTP: " OTP
+printf '\n'
+
+if [ -z "$OTP" ]; then
+  echo "OTP is required"
+  exit 1
+fi
+
+AUTH_FILE=$(mktemp)
+trap 'rm -f "$AUTH_FILE"' EXIT
+chmod 600 "$AUTH_FILE"
+echo "$USERNAME" >"$AUTH_FILE"
+echo "${PASSWORD}${OTP}" >>"$AUTH_FILE"
+
+sudo openvpn --config "$VPN_CONFIG" --auth-user-pass "$AUTH_FILE"

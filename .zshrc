@@ -109,3 +109,45 @@ source $ZSH/oh-my-zsh.sh
 
 # opencode
 export PATH=/Users/leohilsheimer/.opencode/bin:$PATH
+
+# gg-vpn in tmux helpers
+vpn-start() {
+  if tmux has-session -t vpn 2>/dev/null; then
+    echo "VPN session already running. Use 'vpn-status' or 'vpn-stop'."
+    return 1
+  fi
+
+  tmux new -d -s vpn "gg-vpn"
+  sleep 1
+
+  # Attach if the pane is waiting for interactive OTP or sudo input.
+  if tmux capture-pane -t vpn -p | grep -Eq "OTP:|Password:"; then
+    echo "VPN waiting for input, attaching to tmux session..."
+    tmux attach -t vpn
+  else
+    echo "VPN starting in tmux session 'vpn'."
+  fi
+}
+
+vpn-status() {
+  if tmux has-session -t vpn 2>/dev/null; then
+    echo "--- last few lines from VPN session ---"
+    tmux capture-pane -t vpn -p | tail -10
+  else
+    echo "No VPN session running."
+  fi
+}
+
+vpn-attach() {
+  tmux attach -t vpn
+}
+
+vpn-stop() {
+  if tmux has-session -t vpn 2>/dev/null; then
+    tmux kill-session -t vpn
+    sudo pkill openvpn 2>/dev/null
+    echo "VPN session stopped."
+  else
+    echo "No VPN session running."
+  fi
+}
