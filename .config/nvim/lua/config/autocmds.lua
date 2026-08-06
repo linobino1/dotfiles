@@ -104,7 +104,7 @@ vim.api.nvim_create_autocmd("User", {
   callback = function(args)
     local b = args.data.buf_id
     vim.keymap.set("n", "g~", set_cwd, { buffer = b, desc = "Set cwd" })
-    vim.keymap.set("n", "gX", ui_open, { buffer = b, desc = "open with default app" })
+    vim.keymap.set("n", "gx", ui_open, { buffer = b, desc = "Open with default app" })
     vim.keymap.set("n", "gy", yank_relative_path, { buffer = b, desc = "Yank relative path" })
     vim.keymap.set("n", "gY", yank_absolute_path, { buffer = b, desc = "Yank absolute path" })
   end,
