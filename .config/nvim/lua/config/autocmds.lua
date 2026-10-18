@@ -21,6 +21,9 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     -- run lint fix
     vim.fn.system({ "deno", "lint", "--fix", file })
 
+    -- run fmt
+    vim.fn.system({ "deno", "fmt", file })
+
     -- force reload buffer if changed
     vim.cmd("edit!")
   end,
