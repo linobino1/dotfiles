@@ -10,5 +10,11 @@ return {
       ft = { "markdown", "opencode_output" },
     },
   },
-  opts = {},
+  opts = {
+    keymap = {
+      session_picker = {
+        fork_session = { "<C-x>", desc = "Fork selected session" },
+      },
+    },
+  },
 }
