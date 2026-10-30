@@ -1,0 +1,88 @@
+{
+    "profiles": [
+        {
+            "complex_modifications": {
+                "rules": [
+                    {
+                        "description": "Fix Circumflex",
+                        "manipulators": [
+                            {
+                                "from": { "key_code": "non_us_backslash" },
+                                "to": [
+                                    { "key_code": "non_us_backslash" },
+                                    { "key_code": "spacebar" }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Fix Tilde (Left and Right Option)",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "n",
+                                    "modifiers": { "mandatory": ["left_option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "n",
+                                        "modifiers": ["left_option"]
+                                    },
+                                    { "key_code": "spacebar" }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "n",
+                                    "modifiers": { "mandatory": ["right_option"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "n",
+                                        "modifiers": ["right_option"]
+                                    },
+                                    { "key_code": "spacebar" }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Fix Backtick",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "equal_sign",
+                                    "modifiers": { "mandatory": ["left_shift"] }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "equal_sign",
+                                        "modifiers": ["left_shift"]
+                                    },
+                                    { "key_code": "spacebar" }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "fn_function_keys": [
+                {
+                    "from": { "key_code": "f1" },
+                    "to": [{ "apple_vendor_keyboard_key_code": "brightness_down" }]
+                },
+                {
+                    "from": { "key_code": "f2" },
+                    "to": [{ "apple_vendor_keyboard_key_code": "brightness_up" }]
+                }
+            ],
+            "name": "Default profile",
+            "selected": true,
+            "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
+        }
+    ]
+}
