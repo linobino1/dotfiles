@@ -7,11 +7,11 @@ return {
     opts = {},
   },
 
-  -- Configure LazyVim to load nightwolf
+  -- Configure LazyVim to load catppuccin
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "nightwolf",
+      colorscheme = "catppuccin",
     },
   },
 }
