@@ -1,14 +1,126 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "lsp": true,
-  "permission": {
-    "edit": "ask",
-    "bash": "ask"
-  },
   "mcp": {
     "chrome-devtools": {
       "type": "local",
-      "command": ["npx", "-y", "chrome-devtools-mcp@latest"]
+      "command": [
+        "npx",
+        "-y",
+        "chrome-devtools-mcp@latest"
+      ]
     }
-  }
+  },
+  "permissions": [
+    {
+      "action": "edit",
+      "resource": "*",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "*",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "deno lint *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "deno check *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "deno fmt *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git status *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "pnpm typecheck *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "pnpm lint *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "prettier *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "pwd",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git branch --show-current",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git rev-parse --show-toplevel",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git diff --check",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git diff --stat",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git diff --name-only",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git ls-files",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git log -5 --oneline",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "deno --version",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "pnpm --version",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git diff *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "ls *",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "pnpm eslint *",
+      "effect": "allow"
+    }
+  ]
 }
