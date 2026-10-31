@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # this script connects to the GG VPN using an OpenVPN config file,
-# a password stored in the Keychain, and an interactively entered OTP
+# a password stored in the Keychain, and an OTP from a YubiKey or user input
 
 VPN_CONFIG="$HOME/.gg.ovpn"
 SERVICE="openvpn-gg"
@@ -12,8 +12,11 @@ if [ -z "$PASSWORD" ]; then
   exit 1
 fi
 
-read -s -p "OTP: " OTP
-printf '\n'
+OTP=$(ykman oath accounts code --single Sophos 2>/dev/null)
+if [ -z "$OTP" ]; then
+  read -s -p "OTP: " OTP
+  printf '\n'
+fi
 
 if [ -z "$OTP" ]; then
   echo "OTP is required"
