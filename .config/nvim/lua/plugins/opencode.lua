@@ -28,6 +28,9 @@ return {
     },
   },
   opts = {
+    context = {
+      current_file = { enabled = false },
+    },
     keymap = {
       session_picker = {
         fork_session = { "<C-x>", desc = "Fork selected session" },
